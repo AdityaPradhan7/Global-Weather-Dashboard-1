@@ -1,6 +1,6 @@
 const BACKEND_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:5001' // Local development
-  : process.env.NEXT_PUBLIC_BACKEND_URL; // Production
+  : 'https://global-weather-dashboard-1-backend.vercel.app'; // Production
 
 // DOM Elements
 const cityInput = document.getElementById("city-input");
