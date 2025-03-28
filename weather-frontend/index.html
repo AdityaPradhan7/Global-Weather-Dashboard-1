@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js"></script>
+  
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #granim-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas for Granim.js -->
+  <canvas id="granim-canvas"></canvas>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1 id="heading">Global Weather Dashboard</h1>
+    <div class="container">
+      <div class="search-section">
+        <div class="input-with-dropdown">
+          <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
+          <div id="autocomplete-results" class="autocomplete-results"></div>
+        </div>
+        <button id="voice-input">🎙️</button>
+        <button id="search-button">Search</button>
+      </div>
+
+      <div class="dashboard">
+        <div class="top-row">
+          <div class="local-time">
+            <h2>Local Time</h2>
+            <div id="local-time"></div>
+          </div>
+          <div class="current-weather">
+            <h2>Current Weather</h2>
+            <div id="current-weather-data"></div>
+          </div>
+          <div class="air-quality">
+            <h2>Air Quality</h2>
+            <div id="aqi-data"></div>
+          </div>
+        </div>
+
+        <div class="forecast">
+          <h2>Forecast (6 Days)</h2>
+          <div id="forecast-data" class="forecast-container"></div>
+        </div>
+
+        <div class="historical-data">
+          <h2>Past Weather Data</h2>
+          <div class="date-range">
+            <input type="date" id="start-date">
+            <input type="date" id="end-date">
+            <button id="fetch-history">Get Data</button>
+          </div>
+          <div id="historical-weather-data" class="historical-container"></div>
+        </div>
+
+        <div class="weather-map">
+          <h2>Weather Map - (Temperature and AQI overlay)</h2>
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    new Granim({
+        element: '#granim-canvas',
+        direction: 'top-bottom',
+        isPausedWhenNotInView: true,
+        image: {
+            source: 'https://images.unsplash.com/photo-1506452305024-9d3f02d1c9b5',
+            blendingMode: 'multiply', // Softer than 'multiply'
+            stretchMode: ['stretch', 'stretch'], // Fits image better
+            opacity: [0.3, 0.3] // Reduces intensity
+        },
+        states: {
+            "default-state": {
+                gradients: [
+                    ['#29323c', '#485563'],
+                    ['#FF9E9E', '#6D7B8D'], // Soft pink instead of harsh red
+                    ['#5fa8dd', '#6b87ab'],
+                    ['#f0c87a', '#f5f5dc'], // Warmer, softer yellow 
+                ],
+                transitionSpeed: 9000,  // Slower = smoother
+                loop: true
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

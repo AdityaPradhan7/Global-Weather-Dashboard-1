@@ -1,0 +1,303 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.content{
+  padding: 82px;
+  margin-top: -70px;
+}
+
+#granim-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+h1 {
+  color: #f1f1f1;
+  text-shadow: 
+    0 0 5px rgba(22, 3, 3, 0.774),
+    0 0 15px rgba(3, 0, 0, 0.829),
+    0 0 30px rgba(4, 0, 0, 0.683);
+}
+
+h2 {
+  color: #2c3e50;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 2.5rem;
+  
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #00000000;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* This container should wrap both input and dropdown */
+.input-with-dropdown {
+  position: relative;
+  display: flex;
+  flex: 1;
+  max-width: 350px;
+}
+
+#city-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  font-size: 1rem;
+  /* Add these to ensure consistent sizing */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Autocomplete Results */
+.autocomplete-results {
+  position: absolute;
+  top: calc(100% - 7px); /* Adjust for border radius */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Perfect centering */
+  width: calc(100% - 20px); /* Account for border radius */
+  max-width: 330px; /* 350px - 20px for border radius */
+  background: white;
+  border-radius: 0 0 5px 5px; /* Only round bottom corners */
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  /* Remove any border from top for seamless connection */
+  border-top: none;
+  /* Add a small padding at top to compensate */
+  padding-top: 5px;
+}
+
+.city-container {
+  position: relative; /* This is crucial for dropdown positioning */
+  display: flex;
+  flex: 1;
+  max-width: 350px;
+}
+
+
+/* Keep all other existing styles */
+#voice-input, #search-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d81e53;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.autocomplete-results div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-results div:hover {
+  background-color: #f1f1f1;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 60px;
+}
+
+/* Top Row: Local Time, Current Weather, Air Quality */
+.top-row {
+  display: flex;
+  gap: 20px;
+}
+
+.local-time, .current-weather, .air-quality {
+  background-color: white;
+  flex: 1;
+  background: #e8ecf2;/*#e3ebfa;*/
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current-weather-data{
+  background: white;;
+}
+
+/* Forecast Section */
+.forecast {
+  background: #e8ecf2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.daily-forecast {
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.daily-forecast img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Historical Weather Section */
+.historical-data {
+  background: #e8ecf2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.historical-container {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 15px;
+  padding-bottom: 18px;
+}
+
+.historical-container p {
+  flex: 0 0 auto; /* Prevent flex items from shrinking */
+  background: white;
+  padding: 15px;
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 200px; /* Set a minimum width for each historical entry */
+  text-align: center;
+}
+
+.date-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.date-range input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#fetch-history {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d81e53;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#fetch-history:hover {
+  background-color: #C70039;
+}
+
+/* Weather Map Section */
+.weather-map {
+  background: #e8ecf2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+#map {
+  border-radius: 10px;
+  margin-top: 20px;
+  transition: height 0.3s ease; /* Smooth transition for height changes */
+}
+
+/* Default small height when no map is shown */
+#map:not(.active) {
+  height: 50px; /* Small height */
+  background-color: #e8ecf2; /* Placeholder background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-style: italic;
+}
+
+/* Larger height when the map is active */
+#map.active {
+  height: 400px; /* Larger height */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .top-row {
+    flex-direction: column;
+  }
+
+  .forecast-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .forecast-container {
+    grid-template-columns: 1fr;
+  }
+}
