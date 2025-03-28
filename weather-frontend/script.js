@@ -1,6 +1,6 @@
 const BACKEND_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:5001' // Local development
-  : 'process.env.NEXT_PUBLIC_BACKEND_URL'; // Production
+  : process.env.NEXT_PUBLIC_BACKEND_URL; // Production
 
 // DOM Elements
 const cityInput = document.getElementById("city-input");
