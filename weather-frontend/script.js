@@ -1,3 +1,7 @@
+const BACKEND_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5001' // Local development
+  : 'process.env.NEXT_PUBLIC_BACKEND_URL'; // Production
+
 // DOM Elements
 const cityInput = document.getElementById("city-input");
 const voiceInputButton = document.getElementById("voice-input");
@@ -42,7 +46,8 @@ function initMap(lat, lon) {
 // Fetch data from SyncLoop endpoint
 async function fetchWeatherData(city) {
   try {
-    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+    const response = await fetch(`${BACKEND_URL}/api/weather?city=${encodeURIComponent(city)}`);
+    if (!response.ok) throw new Error(`API error: ${response.status}`);
     return await response.json();
   } catch (error) {
     console.error("Error fetching weather data:", error);
@@ -52,7 +57,8 @@ async function fetchWeatherData(city) {
 // Fetch autocomplete suggestions from GeoDB cities API
 async function fetchAutocompleteSuggestions(query) {
   try {
-    const response = await fetch(`/api/autocomplete?query=${encodeURIComponent(query)}`);
+    const response = await fetch(`${BACKEND_URL}/api/autocomplete?query=${encodeURIComponent(query)}`);
+    if (!response.ok) throw new Error(`API error: ${response.status}`);
     return await response.json();
   } catch (error) {
     console.error("Autocomplete error:", error);
@@ -387,8 +393,9 @@ fetchHistoryButton.addEventListener("click", async () => {
     const { lat, lon } = weatherData.AirPollution.coord;
 
     const response = await fetch(
-      `/api/history?lat=${lat}&lon=${lon}&start=${startDate}&end=${endDate}`
+      `${BACKEND_URL}/api/history?lat=${lat}&lon=${lon}&start=${startDate}&end=${endDate}`
     );
+    if (!response.ok) throw new Error(`API error: ${response.status}`);
     const data = await response.json();
 
     // Render historical data horizontally

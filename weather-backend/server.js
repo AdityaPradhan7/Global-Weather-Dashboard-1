@@ -6,6 +6,19 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
+const allowedOrigins = [
+  'https://global-weather-dashboard-1-frontend.vercel.app', // Production frontend
+  /\.vercel\.app$/, // All Vercel preview deployments
+  process.env.NODE_ENV === 'development' 
+    ? /^http:\/\/localhost(:\d+)?$/ // Any localhost port
+    : null
+].filter(Boolean);
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true // If using cookies/auth
+}));
+
 // Route 1: Main weather data (SyncLoop)
 app.get('/api/weather', async (req, res) => {
   try {
