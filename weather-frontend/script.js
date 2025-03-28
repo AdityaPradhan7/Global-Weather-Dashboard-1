@@ -42,7 +42,7 @@ function initMap(lat, lon) {
 // Fetch data from SyncLoop endpoint
 async function fetchWeatherData(city) {
   try {
-    const response = await fetch(`http://localhost:5001/api/weather?city=${city}`);
+    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
     return await response.json();
   } catch (error) {
     console.error("Error fetching weather data:", error);
@@ -52,7 +52,7 @@ async function fetchWeatherData(city) {
 // Fetch autocomplete suggestions from GeoDB cities API
 async function fetchAutocompleteSuggestions(query) {
   try {
-    const response = await fetch(`http://localhost:3001/api/autocomplete?query=${query}`);
+    const response = await fetch(`/api/autocomplete?query=${encodeURIComponent(query)}`);
     return await response.json();
   } catch (error) {
     console.error("Autocomplete error:", error);
@@ -387,7 +387,7 @@ fetchHistoryButton.addEventListener("click", async () => {
     const { lat, lon } = weatherData.AirPollution.coord;
 
     const response = await fetch(
-      `http://localhost:5001/api/history?lat=${lat}&lon=${lon}&startDate=${startDate}&endDate=${endDate}`
+      `/api/history?lat=${lat}&lon=${lon}&start=${startDate}&end=${endDate}`
     );
     const data = await response.json();
 
